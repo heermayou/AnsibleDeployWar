@@ -1,0 +1,2 @@
+instance_path: /usr/local/tomcat/
+war_file: /usr/local/tomcat/webapps/erp.war

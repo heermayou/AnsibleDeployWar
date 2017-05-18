@@ -1,0 +1,10 @@
+- name: check if tomcat is running
+  raw: ps -ef | grep {{ instance_path }} | grep java | grep -v grep | wc -l
+  register: instance_status
+
+- debug: msg="{{instance_status }}"
+
+- name: abuse kill
+  raw: ps -ef | grep {{instance_path}} | grep java | grep -v grep | awk '{print $2}' |xargs kill -9
+  when: instance_status.stdout|int > 0
+

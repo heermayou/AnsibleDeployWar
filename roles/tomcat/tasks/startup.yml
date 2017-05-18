@@ -1,0 +1,16 @@
+- name: check if tomcat is running
+  raw: ps -ef | grep {{instance_path}} | grep java | grep -v grep | wc -l
+  register: instance_status
+
+- debug: msg="{{ instance_status.stdout }}"
+
+#- debug: msg="abc"
+#  when: instance_status.stdout|int == 0
+
+- name: startup tomcat
+  shell: "source /etc/profile;nohup {{ instance_path }}/bin/startup.sh &"
+  ignore_errors: yes
+  when: instance_status.stdout|int == 0
+
+- name: wait for tomcat to start
+  wait_for: port=8080 timeout=60

@@ -1,0 +1,12 @@
+- name: get current date
+  set_fact: mydate="{{ lookup('pipe', 'date +%Y%m%d-%H%M') }}"
+
+- name: create file with a date in name
+  file: path="/home/tomcat/{{ mydate }}"
+        state=directory
+        mode=0755
+
+- name: backup war
+  shell: "cp {{ war_file }} /home/tomcat/{{ mydate }}/"
+
+

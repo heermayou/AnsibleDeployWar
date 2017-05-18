@@ -1,0 +1,3 @@
+- name: copy application WAR file to Tomcat
+  copy: src=erp.war dest={{ war_file }} backup=yes owner=tomcat group=tomcat
+
