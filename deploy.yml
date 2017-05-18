@@ -1,7 +1,7 @@
 ---
 # This playbook deploys a war file to tomcat or dubbo
 
-- hosts: 216.75.6.188
+- hosts: xxx.xxx.xxx.xxx
 #  strategy: debug
   remote_user: tomcat
    
